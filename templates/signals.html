@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="signals">
+    <div class="header">
+        <h2>📶 Trading Signals</h2>
+        <p>Detailed explanations of current trading signals</p>
+    </div>
+
+    {% if error %}
+    <div class="error">
+        <p>{{ error }}</p>
+    </div>
+    {% else %}
+    {% if signals %}
+    <div class="signals-list">
+        {% for signal in signals %}
+        <div class="signal-card {{ signal.action|lower }}">
+            <div class="signal-header">
+                <h3 class="signal-action">{{ signal.action }}</h3>
+                <span class="signal-confidence">{{ "%.1f"|format(signal.confidence * 100) }}% confidence</span>
+            </div>
+            
+            <div class="signal-details">
+                <p><strong>Reason:</strong> {{ signal.reason }}</p>
+                {% if signal.price %}
+                <p><strong>Price:</strong> ${{ "%.2f"|format(signal.price) }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="signal-explanation">
+                <h4>🤖 AI Explanation:</h4>
+                <p>{{ signal.explanation }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <p>No trading signals available at the moment.</p>
+        <p>Check back later or check the dashboard for updates.</p>
+    </div>
+    {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
