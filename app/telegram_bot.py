@@ -14,8 +14,8 @@ logging.basicConfig(
 )
 
 # Telegram Bot Token
-TOKEN = "8057227797:AAFGyQyFPBdu3grDbmhGXIP-CecUVaps8JE"
-CHAT_ID = "7520180611"
+TOKEN = "token"
+CHAT_ID = "id"
 
 # Sample /start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
